@@ -1,4 +1,3 @@
-//ec2ポリシー追加
 // lib/stacks/ec2-stack3.ts
 import { Stack, StackProps } from 'aws-cdk-lib';
 import { Construct } from 'constructs';
