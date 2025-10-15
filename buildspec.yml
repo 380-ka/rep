@@ -3,14 +3,14 @@ version: 0.2
 phases:
   install:
     runtime-versions:
-      nodejs: 22
+      nodejs: 18  # Node.js 22 はまだ一部の環境で不安定な可能性あり
     commands:
       - npm install -g aws-cdk
-      - npm install
+      - npm ci  # より安定した依存関係のインストール
   build:
     commands:
       - npm run build
-      - cdk synth
+      - npx cdk synth
 artifacts:
   files:
     - '**/*'
