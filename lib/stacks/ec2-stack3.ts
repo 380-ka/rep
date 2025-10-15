@@ -1,11 +1,16 @@
-// lib/stacks/ec2-stack3.ts
-import * as cdk from 'aws-cdk-lib';
+/import * as cdk from 'aws-cdk-lib';
 import { Construct } from 'constructs';
 import * as ec2 from 'aws-cdk-lib/aws-ec2';
 
 export class Ec2Stack3 extends cdk.Stack {
   constructor(scope: Construct, id: string, props?: cdk.StackProps) {
-    super(scope, id, props);
+    super(scope, id, {
+      ...props,
+      env: {
+        account: process.env.CDK_DEFAULT_ACCOUNT,
+        region: process.env.CDK_DEFAULT_REGION,
+      },
+    });
 
     // 既存のVPCを参照
     const vpc = ec2.Vpc.fromLookup(this, 'ImportedVPC', {
@@ -31,7 +36,7 @@ export class Ec2Stack3 extends cdk.Stack {
       }),
       keyPair,
       vpcSubnets: {
-        subnetType: ec2.SubnetType.PUBLIC, // CDKが自動でパブリックサブネットを選択
+        subnetType: ec2.SubnetType.PUBLIC,
       },
       securityGroup,
       blockDevices: [
