@@ -3,7 +3,7 @@ import { Stage, StageProps } from 'aws-cdk-lib';
 import { Construct } from 'constructs';
 import { StorageStack } from './storage-stack';
 import { Ec2Stack3 } from './ec2-stack3'; 
-import { BuildIamUpdateStack } from './Build-Iam-stack'; 
+import { BuildIamUpdateStack } from './build-iam-stack'; 
 
 
 export class PipelineStage extends Stage {
