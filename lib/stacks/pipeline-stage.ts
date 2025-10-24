@@ -4,8 +4,6 @@ import { Construct } from 'constructs';
 import { StorageStack } from './storage-stack';
 
 
-
-
 export class PipelineStage extends Stage {
   constructor(scope: Construct, id: string, props?: StageProps) {
     super(scope, id, props);
