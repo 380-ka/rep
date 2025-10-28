@@ -6,7 +6,7 @@ phases:
       nodejs: 22
     commands:
       - npm install -g aws-cdk
-      - npm install
+      - npm install -g npm@11
   build:
     commands:
       - npm run lint         # ESLint 実行
