@@ -11,10 +11,10 @@ phases:
       - npm audit fix
   build:
     commands:
-      - npm run lint         # ESLint 実行
-      - npm run build        # TypeScript ビルド
-      - npx cdk synth        # CDK 合成
+      - npx eslint . --ext .ts,.tsx   # ESLint 実行（npxでローカル使用）
+      - npm run build                 # TypeScript ビルド
+      - npx cdk synth                 # CDK 合成
 artifacts:
   files:
     - '**/*'
-  base-directory: cdk.out
+  base-directory: cdk.outt

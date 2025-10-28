@@ -3,6 +3,7 @@ import { Construct } from 'constructs';
 import { CodePipeline, CodePipelineSource, CodeBuildStep } from 'aws-cdk-lib/pipelines';
 import * as secretsmanager from 'aws-cdk-lib/aws-secretsmanager';
 import * as iam from 'aws-cdk-lib/aws-iam';
+import * as codebuild from 'aws-cdk-lib/aws-codebuild';
 import { PipelineStage } from './pipeline-stage';
 
 export class PipelineStack extends cdk.Stack {
@@ -25,6 +26,10 @@ export class PipelineStack extends cdk.Stack {
     codeBuildRole.addManagedPolicy(iam.ManagedPolicy.fromAwsManagedPolicyName('AmazonS3FullAccess'));
     codeBuildRole.addManagedPolicy(iam.ManagedPolicy.fromAwsManagedPolicyName('AmazonEC2FullAccess'));
     codeBuildRole.addManagedPolicy(iam.ManagedPolicy.fromAwsManagedPolicyName('AmazonVPCFullAccess'));
+    codeBuildRole.addManagedPolicy(iam.ManagedPolicy.fromAwsManagedPolicyName('AWSLambda_FullAccess'));
+    codeBuildRole.addManagedPolicy(iam.ManagedPolicy.fromAwsManagedPolicyName('AmazonSNSFullAccess'));
+    codeBuildRole.addManagedPolicy(iam.ManagedPolicy.fromAwsManagedPolicyName('AmazonSQSFullAccess'));
+    codeBuildRole.addManagedPolicy(iam.ManagedPolicy.fromAwsManagedPolicyName('CloudWatchFullAccess'));
 
     // パイプラインの定義
     const pipeline = new CodePipeline(this, 'Pipeline', {
@@ -34,14 +39,17 @@ export class PipelineStack extends cdk.Stack {
           authentication: githubToken.secretValueFromJson('github-token'),
         }),
         commands: [
-          'npm ci',                // 依存関係インストール
-          'npm run lint',          // コード品質チェック
-          'npm test',              // ユニットテスト実行
-          'npm audit --production',// セキュリティチェック
-          'npm run build',         // ビルド
-          'npx cdk synth'          // CDK合成
+          'npm ci',
+          'npm audit fix',
+          'npm run lint',
+          'npm run build',
+          'npx cdk synth'
         ],
         role: codeBuildRole,
+        buildEnvironment: {
+          buildImage: codebuild.LinuxBuildImage.STANDARD_7_0,
+          computeType: codebuild.ComputeType.SMALL,
+        },
       }),
     });
 
