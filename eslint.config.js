@@ -3,7 +3,7 @@ const eslintParserTs = require('@typescript-eslint/parser');
 
 module.exports = [
   {
-    ignores: ['jest.config.js', 'cdk.out/', 'node_modules/'],
+    ignores: ['jest.config.js', 'cdk.out/', 'node_modules/'], // ← ここで除外
     files: ['**/*.ts', '**/*.tsx'],
     languageOptions: {
       parser: eslintParserTs,
@@ -21,4 +21,4 @@ module.exports = [
       '@typescript-eslint/no-explicit-any': 'off',
     },
   },
-];
+];;
