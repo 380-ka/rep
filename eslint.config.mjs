@@ -1,7 +1,22 @@
-import json from "@eslint/json";
-import { defineConfig } from "eslint/config";
+import eslintPluginTs from '@typescript-eslint/eslint-plugin';
+import eslintParserTs from '@typescript-eslint/parser';
 
-export default defineConfig([
-  { ignores: ["**/*.js", "**/*.cjs", "**/*.mjs"] },
-  { files: ["**/*.json"], plugins: { json }, language: "json/json", extends: ["json/recommended"] },
-]);
+export default [
+  {
+    files: ['**/*.ts', '**/*.tsx'],
+    languageOptions: {
+      parser: eslintParserTs,
+      parserOptions: {
+        project: './tsconfig.json',
+        tsconfigRootDir: process.cwd(),
+      },
+    },
+    plugins: {
+      '@typescript-eslint': eslintPluginTs,
+    },
+    rules: {
+      '@typescript-eslint/no-unused-vars': 'warn',
+      '@typescript-eslint/no-explicit-any': 'off',
+    },
+  },
+];

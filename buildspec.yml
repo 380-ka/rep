@@ -9,8 +9,9 @@ phases:
       - npm install
   build:
     commands:
-      - npm run build
-      - cdk synth
+      - npm run lint         # ESLint 実行
+      - npm run build        # TypeScript ビルド
+      - cdk synth            # CDK 合成
 artifacts:
   files:
     - '**/*'
