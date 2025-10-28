@@ -3,6 +3,7 @@ import eslintParserTs from '@typescript-eslint/parser';
 
 export default [
   {
+    ignores: ['jest.config.js'],
     files: ['**/*.ts', '**/*.tsx'],
     languageOptions: {
       parser: eslintParserTs,
