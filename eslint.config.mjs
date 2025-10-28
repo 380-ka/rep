@@ -1,9 +1,9 @@
-iimport eslintPluginTs from '@typescript-eslint/eslint-plugin';
-import eslintParserTs from '@typescript-eslint/parser';
+const eslintPluginTs = require('@typescript-eslint/eslint-plugin');
+const eslintParserTs = require('@typescript-eslint/parser');
 
-export default [
+module.exports = [
   {
-    ignores: ['jest.config.js', 'cdk.out/', 'node_modules/'], // ← ここをトップレベルに移動
+    ignores: ['jest.config.js', 'cdk.out/', 'node_modules/'],
     files: ['**/*.ts', '**/*.tsx'],
     languageOptions: {
       parser: eslintParserTs,
@@ -22,3 +22,5 @@ export default [
     },
   },
 ];
+
+;
