@@ -17,4 +17,4 @@ phases:
 artifacts:
   files:
     - '**/*'
-  base-directory: cdk.outt
+  base-directory: cdk.out
