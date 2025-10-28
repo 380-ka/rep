@@ -3,15 +3,16 @@ version: 0.2
 phases:
   install:
     runtime-versions:
-      nodejs: 22
+      nodejs: 20
     commands:
       - npm install -g aws-cdk
       - npm install -g npm@11
+      - npm ci
   build:
     commands:
       - npm run lint         # ESLint 実行
       - npm run build        # TypeScript ビルド
-      - cdk synth            # CDK 合成
+      - npx cdk synth        # CDK 合成
 artifacts:
   files:
     - '**/*'
