@@ -8,6 +8,7 @@ phases:
       - npm install -g aws-cdk
       - npm install -g npm@11
       - npm ci
+      - npm audit fix
   build:
     commands:
       - npm run lint         # ESLint 実行

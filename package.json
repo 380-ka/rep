@@ -11,6 +11,9 @@
     "cdk": "cdk",
     "lint": "eslint . --ext .ts,.tsx"
   },
+  "engines": {
+    "node": ">=20.17.0"
+  },
   "devDependencies": {
     "@eslint/json": "^0.13.2",
     "@types/jest": "^29.5.14",
