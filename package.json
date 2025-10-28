@@ -5,12 +5,13 @@
     "cdk-github": "bin/cdk-github.js"
   },
   "scripts": {
-    "build": "tsc",
-    "watch": "tsc -w",
-    "test": "jest",
-    "cdk": "cdk"
+  "build": "tsc",
+  "watch": "tsc -w",
+  "test": "jest",
+  "cdk": "cdk",
+  "lint": "eslint . --ext .ts,.tsx"
   },
-  "devDependencies": {
+   "devDependencies": {
     "@eslint/json": "^0.13.2",
     "@types/jest": "^29.5.14",
     "@types/node": "22.7.9",
