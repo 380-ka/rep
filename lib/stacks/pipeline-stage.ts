@@ -13,7 +13,6 @@ export class PipelineStage extends Stage {
       env: { region: process.env.CDK_DEFAULT_REGION },
     });
 
-  }
     new BuildIamUpdateStack(this, 'BuildIamUpdateStack', {
       env: { region: process.env.CDK_DEFAULT_REGION },
     }); 
