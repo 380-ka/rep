@@ -6,7 +6,7 @@ export class BuildIamUpdateStack extends Stack {
   constructor(scope: Construct, id: string, props?: StackProps) {
     super(scope, id, props);
 
-    const codeBuildRole = iam.Role.fromRoleName(this, 'ImportedCodeBuildRole', 'PipelineStack-CodeBuildServiceRoleA9C1F6A8-9JGfRJ5yVo8Q');
+    const codeBuildRole = iam.Role.fromRoleName(this, 'ImportedCodeBuildRole', 'arn:aws:iam::266735847975:role/PipelineStack-CodeBuildServiceRoleA9C1F6A8-9JGfRJ5yVo8Q');
 
     codeBuildRole.addToPrincipalPolicy(new iam.PolicyStatement({
       actions: [
