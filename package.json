@@ -9,7 +9,7 @@
     "watch": "tsc -w",
     "test": "jest",
     "cdk": "cdk",
-    "lint": "eslint src/**/*.ts lib/**/*.ts"
+    "lint": "eslint . --ext .ts,.tsx"
   },
   "engines": {
     "node": ">=20.17.0"
