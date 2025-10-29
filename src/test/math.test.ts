@@ -1,5 +1,5 @@
 
-import { add } from '../src/utils/math';
+import { add } from '../utils/math';
 
 describe('add function', () => {
   it('should return the sum of two numbers', () => {
