@@ -8,20 +8,16 @@ export class BuildIamUpdateStack extends Stack {
 
     const codeBuildRole = iam.Role.fromRoleName(this, 'ImportedCodeBuildRole', 'PipelineStack-CodeBuildServiceRoleA9C1F6A8-9JGfRJ5yVo8Q');
 
-    codeBuildRole.attachInlinePolicy(new iam.Policy(this, 'CloudTrailPolicy', {
-      statements: [
-        new iam.PolicyStatement({
-          actions: [
-            "cloudtrail:DescribeTrails",
-            "cloudtrail:GetTrailStatus",
-            "cloudtrail:LookupEvents",
-            "cloudtrail:ListTrails",
-            "cloudtrail:GetEventSelectors",
-            "cloudtrail:GetInsightSelectors"
-          ],
-          resources: ["*"]
-        })
-      ]
+    codeBuildRole.addToPrincipalPolicy(new iam.PolicyStatement({
+      actions: [
+         "cloudtrail:DescribeTrails",
+         "cloudtrail:GetTrailStatus",
+         "cloudtrail:LookupEvents",
+         "cloudtrail:ListTrails",
+         "cloudtrail:GetEventSelectors",
+         "cloudtrail:GetInsightSelectors"
+      ],
+      resources: ["*"]
     }));
   }
 }
