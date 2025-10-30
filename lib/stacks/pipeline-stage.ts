@@ -6,7 +6,7 @@ import { Ec2Stack3 } from './ec2-stack3';
 import { BuildIamUpdateStack } from './build-iam-stack'; 
 import { NotificationStack } from './notification_stack';
 import { CloudTrailToS3Stack } from './cloudtrail_to_s3_stack';
-import { CloudFormationFailureNotifierStack } from './cloudtrail_lambda_sns_notifier.ts';
+import { CloudFormationFailureNotifierStack } from './cloudtrail_lambda_sns_notifier';
 
 export class PipelineStage extends Stage {
   constructor(scope: Construct, id: string, props?: StageProps) {
