@@ -33,7 +33,7 @@ export class CloudFormationFailureNotifierStack extends cdk.Stack {
 
           for (const log of failedEvents) {
             await sns.publish({
-              Message: `CloudFormation failure detected: ${log.message}`,
+              Message: \`CloudFormation failure detected: \${log.message}\`,
               TopicArn: topicArn
             }).promise();
           }
