@@ -43,7 +43,6 @@ export class PipelineStack extends cdk.Stack {
           'apt-get update',
           'apt-get install -y nodejs',
           'export PATH="/usr/local/bin:$PATH"'
-          'node -v',
           'npm install -g npm@11',
           'npm ci',
           'npm audit fix',
