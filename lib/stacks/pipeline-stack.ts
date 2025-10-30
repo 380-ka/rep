@@ -39,6 +39,10 @@ export class PipelineStack extends cdk.Stack {
           authentication: githubToken.secretValueFromJson('github-token'),
         }),
         commands: [
+          'curl -fsSL https://deb.nodesource.com/setup_20.x | bash -',
+          'apt-get install -y nodejs',
+          'node -v',  // バージョン確認
+          'npm install -g npm@11',  // npm v11をインストール
           'npm ci',
           'npm audit fix',
           'npm run lint',
