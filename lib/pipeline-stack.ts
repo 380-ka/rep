@@ -38,13 +38,12 @@ export class PipelineStack extends cdk.Stack {
         input: CodePipelineSource.gitHub(repo, branch, {
           authentication: githubToken.secretValueFromJson('github-token'),
         }),
-        commands: [
-          'curl -fsSL https://deb.nodesource.com/setup_20.x | bash -',
-          'apt-get update',
-          'apt-get install -y nodejs',
-          'npm install -g n',
-          'n 20.19.5',
+        commands: [                    
+          'n 20.19.5',                            
+          'ln -sf /usr/local/n/versions/node/20.19.5/bin/node /usr/bin/node',
+          'ln -sf /usr/local/n/versions/node/20.19.5/bin/npm /usr/bin/npm',
           'node -v',
+          'npm -v',
           'npm install -g npm@11',
           'npm ci',
           'npm audit fix',
