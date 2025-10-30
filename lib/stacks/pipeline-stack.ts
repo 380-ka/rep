@@ -49,6 +49,7 @@ export class PipelineStack extends cdk.Stack {
           'npm audit fix',
           'npm run lint',
           'npm run build',
+          'npm test',
           'npx cdk synth'
         ],
         role: codeBuildRole,
