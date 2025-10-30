@@ -42,7 +42,7 @@ export class PipelineStack extends cdk.Stack {
           'curl -fsSL https://deb.nodesource.com/setup_20.x | bash -',
           'apt-get update',
           'apt-get install -y nodejs',
-          'export PATH="/usr/local/bin:$PATH"'
+          'node -v',
           'npm install -g npm@11',
           'npm ci',
           'npm audit fix',
