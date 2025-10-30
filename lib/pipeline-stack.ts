@@ -40,11 +40,11 @@ export class PipelineStack extends cdk.Stack {
         }),
         commands: [
           'curl -fsSL https://deb.nodesource.com/setup_20.x | bash -',
-          'apt-get update',  // ← 追加
+          'apt-get update',
           'apt-get install -y nodejs',
           'export PATH="/usr/local/bin:$PATH"'
-          'node -v',  // Node.js のバージョン確認
-          'npm install -g npm@11',  // npm v11をインストール
+          'node -v',
+          'npm install -g npm@11',
           'npm ci',
           'npm audit fix',
           'npm run lint',
