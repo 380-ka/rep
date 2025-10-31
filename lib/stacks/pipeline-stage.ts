@@ -6,6 +6,7 @@ import { BuildIamUpdateStack } from './build-iam-stack';
 import { NotificationStack } from './notification_stack';
 import { CloudTrailToS3Stack } from './cloudtrail_to_s3_stack';
 import { CloudFormationFailureNotifierStack } from './cloudtrail_lambda_sns_notifier';
+import { CloudFormationFailureEventBridgeStack } from './cloudformation-failure-eventbridge-stack';
 
 
 export class PipelineStage extends Stage {
@@ -29,6 +30,10 @@ export class PipelineStage extends Stage {
     });
 
     new CloudFormationFailureNotifierStack(this, 'CloudFormationFailureNotifierStack', {
+      env: { region: process.env.CDK_DEFAULT_REGION },
+    }); 
+
+    new CloudFormationFailureEventBridgeStack(this, 'CloudFormationFailureEventBridgeStack', {
       env: { region: process.env.CDK_DEFAULT_REGION },
     }); 
 
