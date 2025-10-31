@@ -19,7 +19,7 @@ export class CloudFormationFailureEventBridgeStack extends cdk.Stack {
         source: ['aws.cloudformation'],
         detailType: ['CloudFormation Stack Status Change'],
         detail: {
-          status: ['ROLLBACK_IN_PROGRESS', 'ROLLBACK_COMPLETE', 'DELETE_FAILED']
+          status: ['CREATE_FAILED', 'DELETE_FAILED']
         }
       },
       targets: [new targets.SnsTopic(existingTopic)]
