@@ -7,6 +7,7 @@ import { NotificationStack } from './notification_stack';
 import { CloudTrailToS3Stack } from './cloudtrail_to_s3_stack';
 import { CloudFormationFailureNotifierStack } from './cloudtrail_lambda_sns_notifier';
 import { CodeBuildFailureEventBridgeStack } from './codebuild-failure-eventbridge-stack';
+import { ErrorStorageStack } from './error-stack';
 
 export class PipelineStage extends Stage {
   constructor(scope: Construct, id: string, props?: StageProps) {
@@ -33,6 +34,10 @@ export class PipelineStage extends Stage {
     }); 
 
     new CodeBuildFailureEventBridgeStack(this, 'CodeBuildFailureEventBridgeStack', {
+      env: { region: process.env.CDK_DEFAULT_REGION },
+    });
+
+    new ErrorStorageStack(this, 'ErrorStorageStack', {
       env: { region: process.env.CDK_DEFAULT_REGION },
     });
 
