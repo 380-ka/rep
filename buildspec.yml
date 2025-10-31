@@ -1,5 +1,4 @@
 version: 0.2
-
 phases:
   install:
     runtime-versions:
@@ -11,12 +10,14 @@ phases:
       - npm install -g npm@11
       - npm ci
       - npm audit fix
+      - pip install semgrep  # ← Semgrepをインストール
   build:
     commands:
-      - npx eslint . --ext .ts,.tsx   # ESLint 実行（npxでローカル使用）
-      - npm run build                 # TypeScript ビルド
-      - npm test                     # Jest テスト実行
-      - npx cdk synth                 # CDK 合成
+      - npx eslint . --ext .ts,.tsx
+      - semgrep --config=auto .  # ← Semgrep実行（自動ルール）
+      - npm run build
+      - npm test
+      - npx cdk synth
 artifacts:
   files:
     - '**/*'
