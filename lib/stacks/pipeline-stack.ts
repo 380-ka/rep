@@ -17,6 +17,11 @@ export class PipelineStack extends cdk.Stack {
     const repo = '380-ka/rep';
     const branch = 'main';
 
+    // GitHubソースを一度だけ定義
+    const gitHubSource = CodePipelineSource.gitHub(repo, branch, {
+      authentication: githubToken.secretValueFromJson('github-token'),
+    });
+
     // IAMロールの作成（CodeBuild用）
     const codeBuildRole = new iam.Role(this, 'CodeBuildServiceRole', {
       assumedBy: new iam.ServicePrincipal('codebuild.amazonaws.com'),
@@ -33,9 +38,7 @@ export class PipelineStack extends cdk.Stack {
 
     // Semgrepによるセキュリティチェックステップ
     const sastStep = new CodeBuildStep('SemgrepScan', {
-      input: CodePipelineSource.gitHub(repo, branch, {
-        authentication: githubToken.secretValueFromJson('github-token'),
-      }),
+      input: gitHubSource,
       commands: [
         'n 20.19.5',
         'ln -sf /usr/local/n/versions/node/20.19.5/bin/node /usr/bin/node',
@@ -54,9 +57,7 @@ export class PipelineStack extends cdk.Stack {
 
     // Synthステップ（ビルド・テスト・CDK合成）
     const synthStep = new CodeBuildStep('Synth', {
-      input: CodePipelineSource.gitHub(repo, branch, {
-        authentication: githubToken.secretValueFromJson('github-token'),
-      }),
+      input: gitHubSource,
       commands: [                    
         'n 20.19.5',                            
         'ln -sf /usr/local/n/versions/node/20.19.5/bin/node /usr/bin/node',
