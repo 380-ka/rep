@@ -15,6 +15,7 @@ phases:
     commands:
       - npx eslint . --ext .ts,.tsx   # ESLint 実行（npxでローカル使用）
       - npm run build                 # TypeScript ビルド
+      - npm test                     # Jest テスト実行
       - npx cdk synth                 # CDK 合成
 artifacts:
   files:
