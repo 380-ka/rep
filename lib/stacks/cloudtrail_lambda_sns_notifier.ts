@@ -12,7 +12,7 @@ export class CloudFormationFailureNotifierStack extends cdk.Stack {
 
     // CloudWatch Log Group with 1-week retention
     const logGroup = new logs.LogGroup(this, 'CloudTrailLogGroup', {
-      logGroupName: '/aws/cloudtrail/logs',
+      logGroupName: '/aws/cloudtrail/Errorlogs',
       retention: logs.RetentionDays.ONE_WEEK,
     });
 
