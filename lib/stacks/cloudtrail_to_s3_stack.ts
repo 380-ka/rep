@@ -10,7 +10,7 @@ export class CloudTrailToS3Stack extends cdk.Stack {
 
     // Create S3 bucket for CloudTrail logs
     const trailBucket = new s3.Bucket(this, 'CloudTrailLogBucket', {
-      bucketName: 'cloudtrail-log-bucket_202510310955',
+      bucketName: 'cloudtrail-log-bucket-k380',
       encryption: s3.BucketEncryption.S3_MANAGED,
       blockPublicAccess: s3.BlockPublicAccess.BLOCK_ALL,
       versioned: true,
