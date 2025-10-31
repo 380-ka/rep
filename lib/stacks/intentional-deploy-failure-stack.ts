@@ -7,10 +7,13 @@ export class IntentionalDeployFailureStack extends cdk.Stack {
     super(scope, id, props);
 
     // 存在しないランタイムを指定してLambdaを作成（デプロイ失敗を意図）
-    new lambda.Function(this, 'BrokenLambdaFunction', {
-      runtime: lambda.Runtime.of('nonexistent-runtime'), // ← 存在しないランタイム
-      handler: 'index.handler',
-      code: lambda.Code.fromInline('exports.handler = async () => { return "Hello"; };'),
-    });
+
+  new lambda.Function(this, 'BrokenLambdaFunction', {
+     runtime: new lambda.Runtime('nonexistent-runtime', lambda.RuntimeFamily.NODEJS), // ← 存在しないランタイム
+     handler: 'index.handler',
+     code: lambda.Code.fromInline('exports.handler = async () => { return "Hello"; };'),
+  });
+
+
   }
 }
